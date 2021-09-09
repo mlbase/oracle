@@ -1,0 +1,147 @@
+/*
+열(항목): column
+행: row
+*/
+
+SELECT * FROM EMPLOYEES;
+    
+-- 한줄 주석문
+
+-- table 생성
+/*
+CREATE TABLE 테이블명(
+    컬럼명1 자료형,
+    컬럼명2 자료형,
+        :
+);
+*/
+
+-- 자료형
+/*
+    Java        DB(ORACLE)               MYsql
+    String      VARCHAR2, CHAR, LONG     VARCHAR
+    int         INTEGER, NUMBER
+    double      NUMBER
+    Date        DATE
+    
+
+*/
+
+--문자열
+--char
+CREATE TABLE TB_CHAR(
+    COL1 CHAR(10 BYTE),
+    COL2 CHAR(10 CHAR),
+    COL3 CHAR(10)
+);
+/*
+INSERT INTO 테이블명( 컬럼명1, 컬러명2, ... )
+VALUES( 값1, 값2 ....)
+
+문자열 -> '문자열'
+*/
+
+INSERT INTO TB_CHAR(COL1, COL2, COL3) 
+VALUES('가', '나', '다');  --한글 : 3BYTE
+
+INSERT INTO TB_CHAR(COL1, COL2, COL3) 
+VALUES('ABC', 'BCA', 'CAB');
+
+INSERT INTO TB_CHAR(COL1, COL2, COL3) 
+VALUES('가나', '나다', '가다');
+
+INSERT INTO TB_CHAR(COL1, COL2, COL3) 
+VALUES('가나다', '가나다', '가나다');
+
+SELECT * FROM TB_CHAR;
+
+SELECT COL1, COL2, COL3, LENGTHB(COL1), LENGTHB(COL2), LENGTHB(COL3)
+FROM TB_CHAR;
+/*
+    10 CHAR
+    가 -> 3 BYTE = 3+9 => 12
+    가나 -> 6BYTE = 6+8 => 14
+    가나다 -> 9 BYTE = 9+7 => 16
+
+*/
+
+--VARCHAR2
+CREATE TABLE TB_VARCHAR(
+    COL1 VARCHAR2(10 BYTE),
+    COL2 VARCHAR2(10 CHAR),
+    COL3 VARCHAR2(10)
+);
+
+INSERT INTO tb_varchar(COL1, COL2, COL3)
+VALUES('ABC', 'ABC', 'ABC');
+
+INSERT INTO tb_varchar(COL1, COL2, COL3)
+VALUES('가나다', '가나다', '가나다');
+
+SELECT COL1, COL2, COL3, LENGTHB(COL1), LENGTHB(COL2), LENGTHB(COL3)
+FROM TB_VARCHAR;
+--LONG
+--최대 2GB까지 저장이 가능
+--테이블당 1개의 칼럼만 사용가능
+CREATE TABLE TB_LONG(
+    COL LONG
+--    COL1 LONG
+);
+
+INSERT INTO tb_long(COL)
+VALUES('ABCDE');
+
+SELECT COL--,LENGTHB(COL)
+FROM TB_LONG; -- LONG은 바이트 조회 불가능
+    
+--숫자(INTEGER, NUMBER)
+CREATE TABLE TB_INTEGER(
+    COL1 INTEGER,
+    COL2 INTEGER
+);
+
+INSERT INTO TB_INTEGER(COL1, COL2)
+VALUES(123, 456);
+
+INSERT INTO TB_INTEGER(COL1, COL2)
+VALUES(123, 456.1); -- 자동 CASTING
+
+INSERT INTO tb_integer(COL1, COL2)
+VALUES('123', '456'); --자동 CASTING
+
+CREATE TABLE TB_NUMBER(
+    COL1 NUMBER,
+    COL2 NUMBER(5),
+    COL3 NUMBER(5,2),
+    COL4 NUMBER(*, 2)
+);
+
+INSERT INTO tb_number(COL1, COL2, COL3, COL4)
+VALUES(1234.5678, 12345.12, 123.456, 123.56789);
+-- 3번째에 12345.456 쓰면 오류남
+SELECT
+    * FROM tb_number;
+-- 날짜
+-- 연도, 월, 일, 시, 분, 초
+CREATE TABLE TB_DATE(
+    COL1 DATE,
+    COL2 DATE
+);
+
+INSERT INTO TB_DATE(COL1, COL2)
+VALUES('21/09/09', SYSDATE);
+
+INSERT INTO TB_DATE(COL1, COL2)
+VALUES('21-09-09', SYSDATE - 1);
+
+INSERT INTO TB_DATE(COL1, COL2)
+VALUES(TO_DATE('2021-09-09 11:55:23','YYYY-MM-DD HH:MI:SS'), SYSDATE - 1);
+
+DROP TABLE TB_CHAR;
+
+/*
+    VARCHAR2
+    INTEGER NUMBER
+    DATE
+    */
+    
