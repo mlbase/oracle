@@ -1,19 +1,19 @@
 /*
     SELECT 
     FROM 
-    WHERE   ¡∂∞«¿˝ ->  if
+    WHERE   Ï°∞Í±¥Ï†à ->  if
 
-    ∫Ò±≥ ø¨ªÍ¿⁄( > < >= <= = != <>)
+    ÎπÑÍµê Ïó∞ÏÇ∞Ïûê( > < >= <= = != <>)
     NULL, IS NULL, IS NOT, IS NOT NULL
-    AND(&&), OR(||), (øÏº±∫Ò±≥)
+    AND(&&), OR(||), (Ïö∞ÏÑ†ÎπÑÍµê)
 */
 
--- ¿Ã∏ß -> JULIA
+-- Ïù¥Î¶Ñ -> JULIA
 SELECT first_name, last_name, salary
 FROM EMPLOYEES
 WHERE FIRST_NAME = 'Julia'
 
--- ø˘±ﬁ¿Ã $9000 ¿ÃªÛ¿Œ ªÁø¯
+-- ÏõîÍ∏âÏù¥ $9000 Ïù¥ÏÉÅÏù∏ ÏÇ¨Ïõê
 SELECT first_name, salary
 FROM employees
 WHERE first_name >= '9000';
@@ -26,11 +26,11 @@ SELECT first_name
 FROM employees
 WHERE first_name > 'J' And first_namet_name >='Shanta';
 
--- ∏ﬁ¥œ¿⁄∞° æ¯¥¬ ªÁø¯
+-- Î©îÎãàÏûêÍ∞Ä ÏóÜÎäî ÏÇ¨Ïõê
 SELECT first_name, manager_id
 FROM employees
 WHERE manager_id IS NULL;
--- NULL ¿∫ π´¿˚±« IS NULL∑Œ
+-- NULL ÏùÄ Î¨¥Ï†ÅÍ∂å IS NULLÎ°ú
 SELECT first_name, manager_id
 FROM employees
 WHERE manager_id ='';
@@ -41,7 +41,7 @@ WHERE manager_id IS NOT NULL;
 
 
 -- && = AND
--- ¿Ã∏ß¿Ã John, ø˘±ﬁ¿Ã 5000¿ÃªÛ
+-- Ïù¥Î¶ÑÏù¥ John, ÏõîÍ∏âÏù¥ 5000Ïù¥ÏÉÅ
 SELECT first_name, salary
 FROM employees
 WHERE first_name = 'John'
@@ -53,7 +53,7 @@ FROM employees
 WHERE first_name = 'John'
     OR last_name = 'Vollman';
     
---2007≥‚ 12ø˘ 31¿œ ¿Ã»ƒø° ¿‘ªÁ«— ªÁø¯¿ª √‚∑¬
+--2007ÎÖÑ 12Ïõî 31Ïùº Ïù¥ÌõÑÏóê ÏûÖÏÇ¨Ìïú ÏÇ¨ÏõêÏùÑ Ï∂úÎ†•
 SELECT first_name, hire_date
 FROM employees
 WHERE hire_date > '07/12/31';
@@ -100,7 +100,7 @@ WHERE salary BETWEEN 3200 AND 9000;
 --LIKE
 SELECT  first_name
 FROM EMPLOYEES
-WHERE FIRST_NAME LIKE 'G_ra_d';    -- _ «—±€¿⁄
+WHERE FIRST_NAME LIKE 'G_ra_d';    -- _ ÌïúÍ∏ÄÏûê
 
 SELECT first_name
 FROM employees

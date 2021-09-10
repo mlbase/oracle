@@ -1,75 +1,147 @@
 /*
-    Çü½Ä:
-        SELECT (°ª, ÄÃ·³(Ç×¸ñ)¸í, ÇÔ¼ö, SUB QUERY)
-        FROM (Å×ÀÌºí¸í, SUB QUERY)
+ì—´(í•­ëª©): column
+í–‰: row
 */
 
-SELECT * FROM employees;
-
-SELECT * FROM TAB; -- DB°èÁ¤¾È¿¡ ÀÖ´Â ¸ðµç TABLE
-
-SELECT employee_id, FIRST_NAME, SALARY
-FROM employees;
-
-SELECT employee_id, FIRST_NAME, SALARY * 12
-FROM employees;
-
---ALIAS         '¹®ÀÚ¿­' "¹®ÀÚ¿­"         AS »ý·«°¡´É
-SELECT employee_id AS »ç¿ø¹øÈ£, salary AS "¿ù ±Þ", salary*12 "ÀÏ³âÄ¡ ¿¬ºÀ"
-FROM employees;
-
--- XXXÀÇ ¿ù±ÞÀº xxxÀÔ´Ï´Ù  "ÀÌ¸§ + ¿ù±Þ"
-SELECT  first_name || 'ÀÇ ¿ù±ÞÀº ' || SALARY || 'ÀÔ´Ï´Ù' AS "ÀÌ¸§ + ¿ù±Þ"
-FROM employees;
-
--- DISTINGCT : Áßº¹ÇàÀ» »èÁ¦
-SELECT DISTINCT department_id
-FROM employees;
-
--- ¹®Á¦1) EMPLOYEES TableÀÇ ¸ðµç ÀÚ·á¸¦ Ãâ·ÂÇÏ¿©¶ó.
 SELECT * FROM EMPLOYEES;
--- ¹®Á¦2) EMPLOYEES TableÀÇ ÄÃ·³µéÀ» ¸ðµÎ Ãâ·ÂÇÏ¶ó.
-DESC employees;
-DESC tb_varchar;
--- ¹®Á¦3) EMPLOYEES Table¿¡¼­ »ç¿ø ¹øÈ£, ÀÌ¸§, ±Þ¿©, ´ã´ç¾÷¹«¸¦ Ãâ·ÂÇÏ¿©¶ó.
-SELECT employee_id, FIRST_NAME, SALARY, JOB_ID
-FROM employees;
--- ¹®Á¦4) ¸ðµç Á¾¾÷¿øÀÇ ±Þ¿©¸¦ $300Áõ°¡ ½ÃÅ°±â À§ÇØ¼­ µ¡¼À ¿¬»êÀÚ¸¦ »ç¿ëÇÏ°í °á°ú¿¡ SALARY+300À» µð½ºÇÃ·¹ÀÌ ÇÕ´Ï´Ù.
-SELECT FIRST_NAME , SALARY+300
-FROM employees;
--- ¹®Á¦5) EMP Å×ÀÌºí¿¡¼­ »ç¿ø¹øÈ£, ÀÌ¸§, ±Þ¿©, º¸³Ê½º, º¸³Ê½º ±Ý¾×À» Ãâ·ÂÇÏ¿©¶ó. 
--- (Âü°í·Î º¸³Ê½º´Â ¿ù±Þ + (¿ù±Þ*Ä¿¹Ì¼Ç))
-SELECT employee_id, FIRST_NAME, SALARY , NVL(SALARY*COMMISSION_PCT,0), NVL(SALARY+ SALARY*COMMISSION_PCT,SALARY)
-FROM employees;
-/*
-    NVL(ÄÃ·³, ÄÃ·³ÀÇ °ªÀÌ NULLÀÌ¸é ¼³Á¤µÇ´Â °ª)
     
+-- í•œì¤„ ì£¼ì„ë¬¸
+
+-- table ìƒì„±
+/*
+CREATE TABLE í…Œì´ë¸”ëª…(
+    ì»¬ëŸ¼ëª…1 ìžë£Œí˜•,
+    ì»¬ëŸ¼ëª…2 ìžë£Œí˜•,
+        :
+);
 */
--- ¹®Á¦6) EMPLOYEES Å×ÀÌºí¿¡¼­ LAST_NAMEÀ» ÀÌ¸§À¸·Î SALARYÀ» ±Þ¿©·Î Ãâ·ÂÇÏ¿©¶ó.
-SELECT LAST_NAME AS "ÀÌ¸§", SALARY AS "±Þ¿©"
-FROM employees;
 
--- ¹®Á¦7) EMPLOYEES Å×ÀÌºí¿¡¼­ LAST_NAMEÀ» NameÀ¸·Î SALARY * 12¸¦ Annual Salary(¿¬ºÀ)·Î Ãâ·ÂÇÏ¿©¶ó
-SELECT LAST_NAME AS "NAME", SALARY * 12 AS "Annual Salary"
-FROM employees;
+-- ìžë£Œí˜•
+/*
+    Java        DB(ORACLE)               MYsql
+    String      VARCHAR2, CHAR, LONG     VARCHAR
+    int         INTEGER, NUMBER
+    double      NUMBER
+    Date        DATE
+    
 
--- ¹®Á¦8) EMPLOYEES Å×ÀÌºí¿¡¼­ ÀÌ¸§°ú ¾÷¹«¸¦ ¿¬°áÇÏ¿© Ãâ·ÂÇÏ¿©¶ó. 
-SELECT FIRST_NAME ||JOB_ID 
-FROM employees;
+*/
 
--- ¹®Á¦9) EMPLOYEES Å×ÀÌºí¿¡¼­ ÀÌ¸§°ú ¾÷¹«¸¦ ¡°KING is a PRESIDENT¡± Çü½ÄÀ¸·Î Ãâ·ÂÇÏ¿©¶ó. 
-SELECT FIRST_NAME || ' is a ' || JOB_ID
-FROM employees;
+--ë¬¸ìžì—´
+--char
+CREATE TABLE TB_CHAR(
+    COL1 CHAR(10 BYTE),
+    COL2 CHAR(10 CHAR),
+    COL3 CHAR(10)
+);
+/*
+INSERT INTO í…Œì´ë¸”ëª…( ì»¬ëŸ¼ëª…1, ì»¬ëŸ¬ëª…2, ... )
+VALUES( ê°’1, ê°’2 ....)
 
--- ¹®Á¦10) EMPLOYEES Å×ÀÌºí¿¡¼­ ÀÌ¸§°ú ¿¬ºÀÀ» ¡°KING: 1 Year salary = 60000¡± Çü½ÄÀ¸·Î Ãâ·ÂÇÏ¿©¶ó. 
-SELECT FIRST_NAME || ': 1Year salary = ' || SALARY * 12
-FROM employees;
+ë¬¸ìžì—´ -> 'ë¬¸ìžì—´'
+*/
 
--- ¹®Á¦11) EMPLOYEES Å×ÀÌºí¿¡¼­ JOBÀ» ¸ðµÎ Ãâ·ÂÇÏ¶ó.
-SELECT  DISTINCT JOB_ID
-FROM employees;
+INSERT INTO TB_CHAR(COL1, COL2, COL3) 
+VALUES('ê°€', 'ë‚˜', 'ë‹¤');  --í•œê¸€ : 3BYTE
 
+INSERT INTO TB_CHAR(COL1, COL2, COL3) 
+VALUES('ABC', 'BCA', 'CAB');
 
+INSERT INTO TB_CHAR(COL1, COL2, COL3) 
+VALUES('ê°€ë‚˜', 'ë‚˜ë‹¤', 'ê°€ë‹¤');
 
+INSERT INTO TB_CHAR(COL1, COL2, COL3) 
+VALUES('ê°€ë‚˜ë‹¤', 'ê°€ë‚˜ë‹¤', 'ê°€ë‚˜ë‹¤');
 
+SELECT * FROM TB_CHAR;
 
+SELECT COL1, COL2, COL3, LENGTHB(COL1), LENGTHB(COL2), LENGTHB(COL3)
+FROM TB_CHAR;
+/*
+    10 CHAR
+    ê°€ -> 3 BYTE = 3+9 => 12
+    ê°€ë‚˜ -> 6BYTE = 6+8 => 14
+    ê°€ë‚˜ë‹¤ -> 9 BYTE = 9+7 => 16
+
+*/
+
+--VARCHAR2
+CREATE TABLE TB_VARCHAR(
+    COL1 VARCHAR2(10 BYTE),
+    COL2 VARCHAR2(10 CHAR),
+    COL3 VARCHAR2(10)
+);
+
+INSERT INTO tb_varchar(COL1, COL2, COL3)
+VALUES('ABC', 'ABC', 'ABC');
+
+INSERT INTO tb_varchar(COL1, COL2, COL3)
+VALUES('ê°€ë‚˜ë‹¤', 'ê°€ë‚˜ë‹¤', 'ê°€ë‚˜ë‹¤');
+
+SELECT COL1, COL2, COL3, LENGTHB(COL1), LENGTHB(COL2), LENGTHB(COL3)
+FROM TB_VARCHAR;
+--LONG
+--ìµœëŒ€ 2GBê¹Œì§€ ì €ìž¥ì´ ê°€ëŠ¥
+--í…Œì´ë¸”ë‹¹ 1ê°œì˜ ì¹¼ëŸ¼ë§Œ ì‚¬ìš©ê°€ëŠ¥
+CREATE TABLE TB_LONG(
+    COL LONG
+--    COL1 LONG
+);
+
+INSERT INTO tb_long(COL)
+VALUES('ABCDE');
+
+SELECT COL--,LENGTHB(COL)
+FROM TB_LONG; -- LONGì€ ë°”ì´íŠ¸ ì¡°íšŒ ë¶ˆê°€ëŠ¥
+    
+--ìˆ«ìž(INTEGER, NUMBER)
+CREATE TABLE TB_INTEGER(
+    COL1 INTEGER,
+    COL2 INTEGER
+);
+
+INSERT INTO TB_INTEGER(COL1, COL2)
+VALUES(123, 456);
+
+INSERT INTO TB_INTEGER(COL1, COL2)
+VALUES(123, 456.1); -- ìžë™ CASTING
+
+INSERT INTO tb_integer(COL1, COL2)
+VALUES('123', '456'); --ìžë™ CASTING
+
+CREATE TABLE TB_NUMBER(
+    COL1 NUMBER,
+    COL2 NUMBER(5),
+    COL3 NUMBER(5,2),
+    COL4 NUMBER(*, 2)
+);
+
+INSERT INTO tb_number(COL1, COL2, COL3, COL4)
+VALUES(1234.5678, 12345.12, 123.456, 123.56789);
+-- 3ë²ˆì§¸ì— 12345.456 ì“°ë©´ ì˜¤ë¥˜ë‚¨
+SELECT
+    * FROM tb_number;
+-- ë‚ ì§œ
+-- ì—°ë„, ì›”, ì¼, ì‹œ, ë¶„, ì´ˆ
+CREATE TABLE TB_DATE(
+    COL1 DATE,
+    COL2 DATE
+);
+
+INSERT INTO TB_DATE(COL1, COL2)
+VALUES('21/09/09', SYSDATE);
+
+INSERT INTO TB_DATE(COL1, COL2)
+VALUES('21-09-09', SYSDATE - 1);
+
+INSERT INTO TB_DATE(COL1, COL2)
+VALUES(TO_DATE('2021-09-09 11:55:23','YYYY-MM-DD HH:MI:SS'), SYSDATE - 1);
+
+DROP TABLE TB_CHAR;
+
+/*
+    VARCHAR2
+    INTEGER NUMBER
+    DATE
+    */
+    

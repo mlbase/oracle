@@ -1,22 +1,22 @@
 /*
-¿­(Ç×¸ñ): column
-Çà: row
+ì—´(í•­ëª©): column
+í–‰: row
 */
 
 SELECT * FROM EMPLOYEES;
     
--- ÇÑÁÙ ÁÖ¼®¹®
+-- í•œì¤„ ì£¼ì„ë¬¸
 
--- table »ý¼º
+-- table ìƒì„±
 /*
-CREATE TABLE Å×ÀÌºí¸í(
-    ÄÃ·³¸í1 ÀÚ·áÇü,
-    ÄÃ·³¸í2 ÀÚ·áÇü,
+CREATE TABLE í…Œì´ë¸”ëª…(
+    ì»¬ëŸ¼ëª…1 ìžë£Œí˜•,
+    ì»¬ëŸ¼ëª…2 ìžë£Œí˜•,
         :
 );
 */
 
--- ÀÚ·áÇü
+-- ìžë£Œí˜•
 /*
     Java        DB(ORACLE)               MYsql
     String      VARCHAR2, CHAR, LONG     VARCHAR
@@ -27,7 +27,7 @@ CREATE TABLE Å×ÀÌºí¸í(
 
 */
 
---¹®ÀÚ¿­
+--ë¬¸ìžì—´
 --char
 CREATE TABLE TB_CHAR(
     COL1 CHAR(10 BYTE),
@@ -35,23 +35,23 @@ CREATE TABLE TB_CHAR(
     COL3 CHAR(10)
 );
 /*
-INSERT INTO Å×ÀÌºí¸í( ÄÃ·³¸í1, ÄÃ·¯¸í2, ... )
-VALUES( °ª1, °ª2 ....)
+INSERT INTO í…Œì´ë¸”ëª…( ì»¬ëŸ¼ëª…1, ì»¬ëŸ¬ëª…2, ... )
+VALUES( ê°’1, ê°’2 ....)
 
-¹®ÀÚ¿­ -> '¹®ÀÚ¿­'
+ë¬¸ìžì—´ -> 'ë¬¸ìžì—´'
 */
 
 INSERT INTO TB_CHAR(COL1, COL2, COL3) 
-VALUES('°¡', '³ª', '´Ù');  --ÇÑ±Û : 3BYTE
+VALUES('ê°€', 'ë‚˜', 'ë‹¤');  --í•œê¸€ : 3BYTE
 
 INSERT INTO TB_CHAR(COL1, COL2, COL3) 
 VALUES('ABC', 'BCA', 'CAB');
 
 INSERT INTO TB_CHAR(COL1, COL2, COL3) 
-VALUES('°¡³ª', '³ª´Ù', '°¡´Ù');
+VALUES('ê°€ë‚˜', 'ë‚˜ë‹¤', 'ê°€ë‹¤');
 
 INSERT INTO TB_CHAR(COL1, COL2, COL3) 
-VALUES('°¡³ª´Ù', '°¡³ª´Ù', '°¡³ª´Ù');
+VALUES('ê°€ë‚˜ë‹¤', 'ê°€ë‚˜ë‹¤', 'ê°€ë‚˜ë‹¤');
 
 SELECT * FROM TB_CHAR;
 
@@ -59,9 +59,9 @@ SELECT COL1, COL2, COL3, LENGTHB(COL1), LENGTHB(COL2), LENGTHB(COL3)
 FROM TB_CHAR;
 /*
     10 CHAR
-    °¡ -> 3 BYTE = 3+9 => 12
-    °¡³ª -> 6BYTE = 6+8 => 14
-    °¡³ª´Ù -> 9 BYTE = 9+7 => 16
+    ê°€ -> 3 BYTE = 3+9 => 12
+    ê°€ë‚˜ -> 6BYTE = 6+8 => 14
+    ê°€ë‚˜ë‹¤ -> 9 BYTE = 9+7 => 16
 
 */
 
@@ -76,13 +76,13 @@ INSERT INTO tb_varchar(COL1, COL2, COL3)
 VALUES('ABC', 'ABC', 'ABC');
 
 INSERT INTO tb_varchar(COL1, COL2, COL3)
-VALUES('°¡³ª´Ù', '°¡³ª´Ù', '°¡³ª´Ù');
+VALUES('ê°€ë‚˜ë‹¤', 'ê°€ë‚˜ë‹¤', 'ê°€ë‚˜ë‹¤');
 
 SELECT COL1, COL2, COL3, LENGTHB(COL1), LENGTHB(COL2), LENGTHB(COL3)
 FROM TB_VARCHAR;
 --LONG
---ÃÖ´ë 2GB±îÁö ÀúÀåÀÌ °¡´É
---Å×ÀÌºí´ç 1°³ÀÇ Ä®·³¸¸ »ç¿ë°¡´É
+--ìµœëŒ€ 2GBê¹Œì§€ ì €ìž¥ì´ ê°€ëŠ¥
+--í…Œì´ë¸”ë‹¹ 1ê°œì˜ ì¹¼ëŸ¼ë§Œ ì‚¬ìš©ê°€ëŠ¥
 CREATE TABLE TB_LONG(
     COL LONG
 --    COL1 LONG
@@ -92,9 +92,9 @@ INSERT INTO tb_long(COL)
 VALUES('ABCDE');
 
 SELECT COL--,LENGTHB(COL)
-FROM TB_LONG; -- LONGÀº ¹ÙÀÌÆ® Á¶È¸ ºÒ°¡´É
+FROM TB_LONG; -- LONGì€ ë°”ì´íŠ¸ ì¡°íšŒ ë¶ˆê°€ëŠ¥
     
---¼ýÀÚ(INTEGER, NUMBER)
+--ìˆ«ìž(INTEGER, NUMBER)
 CREATE TABLE TB_INTEGER(
     COL1 INTEGER,
     COL2 INTEGER
@@ -104,10 +104,10 @@ INSERT INTO TB_INTEGER(COL1, COL2)
 VALUES(123, 456);
 
 INSERT INTO TB_INTEGER(COL1, COL2)
-VALUES(123, 456.1); -- ÀÚµ¿ CASTING
+VALUES(123, 456.1); -- ìžë™ CASTING
 
 INSERT INTO tb_integer(COL1, COL2)
-VALUES('123', '456'); --ÀÚµ¿ CASTING
+VALUES('123', '456'); --ìžë™ CASTING
 
 CREATE TABLE TB_NUMBER(
     COL1 NUMBER,
@@ -118,11 +118,11 @@ CREATE TABLE TB_NUMBER(
 
 INSERT INTO tb_number(COL1, COL2, COL3, COL4)
 VALUES(1234.5678, 12345.12, 123.456, 123.56789);
--- 3¹øÂ°¿¡ 12345.456 ¾²¸é ¿À·ù³²
+-- 3ë²ˆì§¸ì— 12345.456 ì“°ë©´ ì˜¤ë¥˜ë‚¨
 SELECT
     * FROM tb_number;
--- ³¯Â¥
--- ¿¬µµ, ¿ù, ÀÏ, ½Ã, ºÐ, ÃÊ
+-- ë‚ ì§œ
+-- ì—°ë„, ì›”, ì¼, ì‹œ, ë¶„, ì´ˆ
 CREATE TABLE TB_DATE(
     COL1 DATE,
     COL2 DATE
